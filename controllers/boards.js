@@ -41,9 +41,34 @@ async function show(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const board = await Board.findByIdAndUpdate(
+      req.params.boardId,
+      req.body,
+      { new: true }
+    ).populate('owner')
+    res.status(201).json(board)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+async function deleteBoard(req, res) {
+  try {
+    
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 export {
   index,
   create,
   show,
+  update,
+  deleteBoard as delete,
 
 }

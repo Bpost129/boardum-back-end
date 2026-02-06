@@ -7,6 +7,8 @@ const router = Router()
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, boardsCtrl.index)
 router.get('/:boardId', checkAuth, boardsCtrl.show)
+router.put('/:boardId', checkAuth, boardsCtrl.update)
 router.post('/', checkAuth, boardsCtrl.create)
+router.delete('/:boardId', checkAuth, boardsCtrl.delete)
 
 export { router }
