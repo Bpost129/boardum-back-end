@@ -57,7 +57,11 @@ async function update(req, res) {
 
 async function deleteBoard(req, res) {
   try {
-    
+    const blog = await Board.findByIdAndDelete(req.params.boardId)
+    const profile = await Profile.findById(req.user.profile)
+    profile.boards.remove({ _id: req.params.boardId })
+    await profile.save()
+    res.status(200).json(blog)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
