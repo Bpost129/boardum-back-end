@@ -40,9 +40,39 @@ async function show(req, res) {
     res.status(500).json(err)
   }
 }
+
+async function update(req, res) {
+  try {
+    const list = await List.findByIdAndUpdate(
+      req.params.listId,
+      req.body,
+      { new: true }
+    ).populate('board')
+    res.status(201).json(list)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+async function deleteList(req, res) {
+  try {
+    const list = await List.findByIdAndDelete(req.params.listId)
+    const board = await Board.findById(req.params.boardId)
+    board.lists.remove({ _id: req.params.listId })
+    await board.save()
+    res.status(200).json(list)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 export {
   index,
   create,
   show,
+  update,
+  deleteList as delete,
 
 }
