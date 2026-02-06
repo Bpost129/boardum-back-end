@@ -6,6 +6,7 @@ const router = Router()
 
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, boardsCtrl.index)
+router.get('/:boardId', checkAuth, boardsCtrl.show)
 router.post('/', checkAuth, boardsCtrl.create)
 
 export { router }

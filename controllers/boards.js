@@ -15,7 +15,7 @@ async function index(req, res) {
 
 async function create(req, res) {
   try {
-    req.body.owner = req.user.Profile
+    req.body.owner = req.user.profile
     const board = await Board.create(req.body)
     const profile = await Profile.findByIdAndUpdate(
       req.user.profile,
@@ -30,8 +30,20 @@ async function create(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const board = await Board.findById(req.params.boardId)
+      .populate('owner')
+    res.status(200).json(board)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 export {
   index,
   create,
+  show,
 
 }
