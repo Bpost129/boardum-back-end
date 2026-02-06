@@ -43,7 +43,12 @@ async function show(req, res) {
 
 async function update(req, res) {
   try {
-    
+    const card = await Card.findByIdAndUpdate(
+      req.params.cardId,
+      req.body,
+      { new: true }
+    ).populate('list')
+    res.status(201).json(card)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
