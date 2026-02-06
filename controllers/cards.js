@@ -57,7 +57,11 @@ async function update(req, res) {
 
 async function deleteCard(req, res) {
   try {
-    
+    const card = await Card.findByIdAndDelete(req.params.cardId)
+    const list = await List.findById(req.params.listId)
+    list.cards.remove({ _id: req.params.cardId })
+    await list.save()
+    res.status(200).json(card)
   } catch (err) {
     console.log(err)
     res.status(500).json(err)

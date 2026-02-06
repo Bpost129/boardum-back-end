@@ -9,6 +9,6 @@ router.get('/', checkAuth, cardsCtrl.index)
 router.get('/:cardId', checkAuth, cardsCtrl.show)
 router.put('/:cardId', checkAuth, cardsCtrl.update)
 router.post('/', checkAuth, cardsCtrl.create)
-router.delete('/:listId', checkAuth, cardsCtrl.delete)
+router.delete('/:cardId', checkAuth, cardsCtrl.delete)
 
 export { router }
