@@ -27,7 +27,7 @@ app.use(formData.parse())
 app.use('/api/profiles', profilesRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/boards', boardsRouter)
-app.use('/api/lists', listsRouter)
+app.use('/api/boards/:boardId/lists', listsRouter)
 
 // handle 404 errors
 app.use(function (req, res, next) {
