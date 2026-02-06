@@ -30,8 +30,40 @@ async function create(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const card = await Card.findById(req.params.cardId)
+      .populate('list')
+    res.status(200).json(card)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+async function update(req, res) {
+  try {
+    
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
+async function deleteCard(req, res) {
+  try {
+    
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 export {
   index,
   create,
+  show,
+  update,
+  deleteCard as delete,
 
 }
