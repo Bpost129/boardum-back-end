@@ -6,6 +6,7 @@ const router = Router({ mergeParams: true })
 
 router.use(decodeUserFromToken)
 router.get('/', checkAuth, listsCtrl.index)
+router.get('/:listId', checkAuth, listsCtrl.show)
 router.post('/', checkAuth, listsCtrl.create)
 
 export { router }
