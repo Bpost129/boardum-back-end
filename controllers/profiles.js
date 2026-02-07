@@ -13,7 +13,7 @@ async function index(req, res) {
 
 async function show(req, res) {
   try {
-    const profile = await Profile.findById(req.user.profile)
+    const profile = await Profile.findById(req.params.id)
     res.status(200).json(profile)
   } catch (err) {
     console.log(err)
@@ -40,4 +40,4 @@ async function addPhoto(req, res) {
   }
 }
 
-export { index, addPhoto }
+export { index, addPhoto, show }
