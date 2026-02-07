@@ -11,6 +11,16 @@ async function index(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const profile = await Profile.findById(req.user.profile)
+    res.status(200).json(profile)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 async function addPhoto(req, res) {
   try {
     const imageFile = req.files.photo.path
