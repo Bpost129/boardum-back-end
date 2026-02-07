@@ -3,7 +3,7 @@ import { Profile } from "../models/profile.js"
 
 async function index(req, res) {
   try {
-    const boards = await Board.find({})
+    const boards = await Board.find({ owner: req.user.profile })
       .populate('owner')
       .sort({ updatedAt: 'asc' })
     res.status(200).json(boards)
