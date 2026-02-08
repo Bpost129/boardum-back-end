@@ -3,7 +3,7 @@ import { List } from "../models/list.js"
 
 async function index(req, res) {
   try {
-    const cards = await Card.find({})
+    const cards = await Card.find({ list: req.params.listId})
       .populate('list')
       .sort({ order: 'asc' })
     res.status(200).json(cards)
