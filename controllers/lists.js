@@ -5,7 +5,8 @@ async function index(req, res) {
   try {
     const lists = await List.find({ board: req.params.boardId })
       .populate('board')
-      .sort({ order: 'asc' })
+      .sort({ createdAt: 'asc'})
+      // .sort({ order: 'asc' })
     res.status(200).json(lists)
   } catch (err) {
     console.log(err)
