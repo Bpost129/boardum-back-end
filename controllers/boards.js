@@ -5,7 +5,7 @@ async function index(req, res) {
   try {
     const boards = await Board.find({ owner: req.user.profile })
       .populate('owner')
-      .sort({ updatedAt: 'asc' })
+      .sort({ updatedAt: 'desc' })
     res.status(200).json(boards)
   } catch (err) {
     console.log(err)
