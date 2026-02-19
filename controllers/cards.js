@@ -5,7 +5,7 @@ async function index(req, res) {
   try {
     const cards = await Card.find({ list: req.params.listId})
       .populate('list')
-      .sort({ createdAt: 'asc'})
+      .sort({ order: 'asc'})
       // .sort({ order: 'asc' })
     res.status(200).json(cards)
   } catch (err) {
@@ -23,7 +23,6 @@ async function create(req, res) {
       { $push: { cards: card } },
       { new: true }
     )
-    card.order = list.cards.length
     card.list = list
     res.status(201).json(card)
   } catch (err) {
