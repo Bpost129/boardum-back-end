@@ -23,6 +23,7 @@ async function create(req, res) {
       { $push: { lists: list } },
       { new: true }
     )
+    list.order = board.lists.length
     list.board = board
     res.status(201).json(list)
   } catch (err) {

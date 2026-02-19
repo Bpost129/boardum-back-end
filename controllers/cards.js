@@ -23,6 +23,7 @@ async function create(req, res) {
       { $push: { cards: card } },
       { new: true }
     )
+    card.order = list.cards.length
     card.list = list
     res.status(201).json(card)
   } catch (err) {
