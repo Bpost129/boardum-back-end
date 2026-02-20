@@ -8,7 +8,8 @@ const listSchema = new Schema({
     required: true
   },
   order: {
-    type: Number
+    type: Number,
+    default: 1
   },
   board: {
     type: Schema.Types.ObjectId,

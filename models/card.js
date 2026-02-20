@@ -12,6 +12,7 @@ const cardSchema = new Schema({
   },
   order: {
     type: Number,
+    default: 1
   },
   list: {
     type: Schema.Types.ObjectId,
