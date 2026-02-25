@@ -11,6 +11,11 @@ const listSchema = new Schema({
     type: Number,
     default: 1
   },
+  color: {
+    type: String,
+    default: 'Black',
+    enum: ['Black', 'Red', 'Blue', 'Green', 'Yellow']
+  },
   board: {
     type: Schema.Types.ObjectId,
     ref: 'Board'
