@@ -5,8 +5,7 @@ async function index(req, res) {
   try {
     const lists = await List.find({ board: req.params.boardId })
       .populate('board')
-      .sort({ order: 'asc'})
-      // .sort({ order: 'asc' })
+      .sort({ order: 'asc' })
     res.status(200).json(lists)
   } catch (err) {
     console.log(err)
@@ -71,11 +70,27 @@ async function deleteList(req, res) {
   }
 }
 
+async function batchUpdateOrder(req, res) {
+  try {
+    const listOrderUpdates = req.body
+
+    const updatePromises = listOrderUpdates.map(({ _id, order }) =>
+      List.findByIdAndUpdate(_id, { order }, { new: true })
+    )
+
+    const updatedLists = await Promise.all(updatePromises)
+    res.status(200).json(updatedLists)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+}
+
 export {
   index,
   create,
   show,
   update,
   deleteList as delete,
-
+  batchUpdateOrder,
 }
