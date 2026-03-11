@@ -10,6 +10,17 @@ const cardSchema = new Schema({
   description: {
     type: String,
   },
+  label: {
+    type: String,
+    color: {
+      type: String,
+      default: 'Red',
+      enum: ['Red', 'Blue', 'Green', 'Yellow', 'Orange', 'Purple']
+    },
+  },
+  dueDate: {
+    type: Date,
+  },
   order: {
     type: Number,
     default: 1
