@@ -15,6 +15,7 @@ const cardSchema = new Schema({
   },
   labelColor: {
     type: String,
+    default: 'Red',
     enum: ['Red', 'Blue', 'Green', 'Yellow', 'Orange', 'Purple']
   },
   dueDate: {
